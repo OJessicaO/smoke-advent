@@ -173,8 +173,10 @@ def train_advent(model, trainloader, targetloader, cfg):
                           'loss_seg_src_main': loss_seg_src_main,
                           'loss_adv_trg_aux': loss_adv_trg_aux,
                           'loss_adv_trg_main': loss_adv_trg_main,
+                          'loss_adv_net': loss,
                           'loss_d_aux': loss_d_aux,
-                          'loss_d_main': loss_d_main}
+                          'loss_d_main': loss_d_main,
+                          }
         print_losses(current_losses, i_iter)
 
         if i_iter % cfg.TRAIN.SAVE_PRED_EVERY == 0 and i_iter != 0:
