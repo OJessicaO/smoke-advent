@@ -1,10 +1,10 @@
 SOURCE: SYNTHETIC
-DATA_DIRECTORY_SOURCE: "../../../data/synthetic_smoke"
-DATA_LIST_SOURCE: '../../dataset/synthetic_smoke_list/{}.txt'
+DATA_DIRECTORY_SOURCE: "../../data/synthetic_smoke"
+DATA_LIST_SOURCE: '../dataset/synthetic_smoke_list/{}.txt'
 
 TARGET: REAL
-DATA_DIRECTORY_TARGET: "../../../data/real_smoke"
-DATA_LIST_TARGET: '../../dataset/real_smoke_list/{}.txt'
+DATA_DIRECTORY_TARGET: "../../data/real_smoke"
+DATA_LIST_TARGET: '../dataset/real_smoke_list/{}.txt'
 
 EXP_NAME: SYNTHETIC2REAL_DeepLabv2_AdvEnt_2x_entropy
 NUM_CLASSES: 2
