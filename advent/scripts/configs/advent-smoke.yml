@@ -1,0 +1,26 @@
+SOURCE: SYNTHETIC
+DATA_DIRECTORY_SOURCE: "../../../data/synthetic_smoke"
+DATA_LIST_SOURCE: '../../dataset/synthetic_smoke_list/{}.txt'
+
+TARGET: REAL
+DATA_DIRECTORY_TARGET: "../../../data/real_smoke"
+DATA_LIST_TARGET: '../../dataset/real_smoke_list/{}.txt'
+
+NUM_CLASSES: 2
+NUM_WORKERS: 4
+TRAIN:
+
+  SET_SOURCE: 'all'
+  MAX_ITERS: 250000
+  BATCH_SIZE_SOURCE: 2
+  INPUT_SIZE_SOURCE: [1024, 512] 
+  IMG_MEAN: [122, 122, 122]
+  
+  DA_METHOD: AdvEnt
+  MODEL: DeepLabv2
+  RESTORE_FROM: ../../pretrained_models/DeepLab_resnet_pretrained_imagenet.pth
+  MULTI_LEVEL: True
+  LAMBDA_ADV_MAIN: 0.001
+  LAMBDA_ADV_AUX: 0.0002
+TEST:
+  MODE: best
