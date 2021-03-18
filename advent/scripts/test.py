@@ -13,7 +13,7 @@ import warnings
 from torch.utils import data
 
 from advent.model.deeplabv2 import get_deeplab_v2
-from advent.dataset.cityscapes import CityscapesDataSet
+from advent.dataset.smoke import SmokeDataSet
 from advent.domain_adaptation.config import cfg, cfg_from_file
 from advent.domain_adaptation.eval_UDA import evaluate_domain_adaptation
 
@@ -66,13 +66,11 @@ def main(config_file, exp_suffix):
         return
 
     # dataloaders
-    test_dataset = CityscapesDataSet(root=cfg.DATA_DIRECTORY_TARGET,
+    test_dataset = SmokeDataSet(root=cfg.DATA_DIRECTORY_TARGET,
                                      list_path=cfg.DATA_LIST_TARGET,
                                      set=cfg.TEST.SET_TARGET,
-                                     info_path=cfg.TEST.INFO_TARGET,
                                      crop_size=cfg.TEST.INPUT_SIZE_TARGET,
-                                     mean=cfg.TEST.IMG_MEAN,
-                                     labels_size=cfg.TEST.OUTPUT_SIZE_TARGET)
+                                     mean=cfg.TEST.IMG_MEAN)
     test_loader = data.DataLoader(test_dataset,
                                   batch_size=cfg.TEST.BATCH_SIZE_TARGET,
                                   num_workers=cfg.NUM_WORKERS,

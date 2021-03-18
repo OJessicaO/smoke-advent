@@ -7,6 +7,7 @@ class SmokeDataSet(BaseDataset):
     def __init__(self, root, list_path, set='all',
                  max_iters=None, crop_size=(321, 321), mean=(128, 128, 128)):
         super().__init__(root, list_path, set, max_iters, crop_size, None, mean)
+        self.class_names = np.array(['background', 'smoke'], dtype=np.str)
       
 
     def get_metadata(self, name):
