@@ -6,14 +6,14 @@ TARGET: REAL
 DATA_DIRECTORY_TARGET: "../../data/real_smoke"
 DATA_LIST_TARGET: '../dataset/real_smoke_list/{}.txt'
 
-EXP_NAME: SYNTHETIC2REAL_DeepLabv2_AdvEnt_10x_entropy
+EXP_NAME: SYNTHETIC2REAL_DeepLabv2_AdvEnt_30x_entropy_pretrained
 NUM_CLASSES: 2
 NUM_WORKERS: 4
 TRAIN:
 
   SET_SOURCE: 'all'
   MAX_ITERS: 250000
-  EARLY_STOP: 12000
+  EARLY_STOP: 6000
   BATCH_SIZE_SOURCE: 2
   INPUT_SIZE_SOURCE: [1024, 512] 
   IMG_MEAN: [97, 99, 100]
@@ -21,13 +21,13 @@ TRAIN:
   
   DA_METHOD: AdvEnt
   MODEL: DeepLabv2
-  RESTORE_FROM: ../../pretrained_models/DeepLab_resnet_pretrained_imagenet.pth
+  RESTORE_FROM: '../../pretrained_models/DeepLab_resnet_pretrained_imagenet.pth'
   MULTI_LEVEL: True
-  LAMBDA_ADV_MAIN: 0.01
-  LAMBDA_ADV_AUX: 0.002
+  LAMBDA_ADV_MAIN: 0.03
+  LAMBDA_ADV_AUX: 0.006
 TEST:
   MODE: best
   INPUT_SIZE_TARGET: [1024, 512]
   IMG_MEAN: [97, 99, 100]
   OUTPUT_SIZE_TARGET: [1024, 512]
-  BATCH_SIZE_TARGET: 1
+  BATCH_SIZE_TARGET: 4

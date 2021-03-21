@@ -100,7 +100,6 @@ def train_advent(model, trainloader, targetloader, cfg):
         # train on source
         _, batch = trainloader_iter.__next__()
         images_source, labels, _, _ = batch
-        print("images_source: ", images_source.min(), images_source.max()) 
         pred_src_aux, pred_src_main = model(images_source.cuda(device))
         if cfg.TRAIN.MULTI_LEVEL:
             pred_src_aux = interp(pred_src_aux)
@@ -116,7 +115,6 @@ def train_advent(model, trainloader, targetloader, cfg):
         # adversarial training ot fool the discriminator
         _, batch = targetloader_iter.__next__()
         images, _, _, _ = batch
-        print("images_target: ", images.min(), images.max())
         pred_trg_aux, pred_trg_main = model(images.cuda(device))
         if cfg.TRAIN.MULTI_LEVEL:
             pred_trg_aux = interp_target(pred_trg_aux)

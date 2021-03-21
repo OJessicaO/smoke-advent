@@ -7,11 +7,13 @@
 
 import os.path as osp
 import time
+import os
 
 import numpy as np
 import torch
 from torch import nn
 from tqdm import tqdm
+from PIL import Image
 
 from advent.utils.func import per_class_iu, fast_hist
 from advent.utils.serialization import pickle_dump, pickle_load
@@ -109,6 +111,12 @@ def eval_best(cfg, models,
                     output = interp(pred_main).cpu().data[0].numpy()
                     output = output.transpose(1, 2, 0)
                     output = np.argmax(output, axis=2)
+                    output_plot = output.astype(np.uint8) * 255
+#                     print(output.shape)
+                    im = Image.fromarray(output_plot)
+                    snap_path = os.path.join("/home/sgaba/da/smoke-advent/experiments/snapshots/SYNTHETIC2REAL_DeepLabv2_AdvEnt_10x_entropy_one", "exp")
+                    os.makedirs(snap_path, exist_ok=True)
+                    im.save(osp.join(snap_path, str(index) + ".jpg"))
                 label = label.numpy()[0]
                 hist += fast_hist(label.flatten(), output.flatten(), cfg.NUM_CLASSES)
                 if verbose and index > 0 and index % 100 == 0:
